@@ -1,0 +1,15 @@
+version: '2.1'
+services:
+  monstergen:
+    build:
+      context: docker/monstergen
+    networks:
+      - monstergen
+    volumes:
+      - .:/monstergen
+    ports:
+      # [Port on host]:[Port inside container]
+      - "5000:80"
+
+networks:
+  monstergen:
