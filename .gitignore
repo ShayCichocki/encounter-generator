@@ -33,5 +33,5 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 *.pyc
 app/__pycache__
-ux/www/
-ux/node_modules/
+/ux/www/
+/ux/node_modules/
