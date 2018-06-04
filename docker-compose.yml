@@ -1,15 +1,16 @@
 version: '2.1'
 services:
-  monstergen:
+  encountergen:
     build:
-      context: docker/monstergen
+      context: docker/encountergen
     networks:
-      - monstergen
+      - encountergen
     volumes:
-      - .:/monstergen
+      - "./app:/encountergen"
+      - "./ux:/encountergenux"
     ports:
       # [Port on host]:[Port inside container]
       - "5000:80"
 
 networks:
-  monstergen:
+  encountergen:

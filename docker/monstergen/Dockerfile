@@ -32,12 +32,13 @@ RUN pip3 install \
     Flask
 
 RUN /usr/bin/npm install -g \
-    ionic
+    ionic \
+    cordova
 
 RUN rm /etc/nginx/sites-enabled/default
 
-COPY conf/nginx/monstergen.conf /etc/nginx/sites-enabled/
-RUN ln -s /etc/nginx/sites-enabled/monstergen.conf /etc/nginx/sites-available/monstergen
+COPY conf/nginx/encountergen.conf /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-enabled/encountergen.conf /etc/nginx/sites-available/encountergen
 
 COPY conf/supervisord/ /etc/supervisor/
 
@@ -45,5 +46,5 @@ COPY scripts/ /docker
 RUN chmod u+x /docker/entrypoint.sh
 
 EXPOSE 5000
-WORKDIR /monstergen
+WORKDIR /encountergen
 CMD ["/docker/entrypoint.sh"]

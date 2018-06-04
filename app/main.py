@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import jsonify, render_template
 
-app = Flask(__name__, template_folder="ux")
+app = Flask(__name__, template_folder="../encountergenux")
 
 @app.route("/")
 def home():
@@ -13,7 +13,7 @@ def get_monster_list():
 
 @app.route("/monsters/<id>")
 def get_monster_by_id(id):
-    return jsonify({'id':id})
+    return jsonify({'ids':id})
 
 @app.route("/generate-encounter", methods=['POST'])
 def generate_encounter(id):
