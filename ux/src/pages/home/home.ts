@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -10,10 +9,7 @@ export class HomePage {
       location:"all",
       difficulty: 0,
       minMonsters: 1,
-      maxMonsters: 15,
-  }
-  constructor(public navCtrl: NavController) {
-
+      maxMonsters: 15
   }
   logForm() {
     console.log(this.encounter)
