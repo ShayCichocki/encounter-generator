@@ -1,0 +1,125 @@
+{
+    "levelDifficulty": {
+        "1": {
+            "easy": 20,
+            "medium": 50,
+            "challenging": 100,
+            "deadly": 150
+        },
+        "2": {
+            "easy": 20,
+            "medium": 70,
+            "challenging": 140,
+            "deadly": 210
+        },
+        "3": {
+            "easy": 40,
+            "medium": 110,
+            "challenging": 140,
+            "deadly": 330
+        },
+        "4": {
+            "easy": 50,
+            "medium": 150,
+            "challenging": 300,
+            "deadly": 450
+        },
+        "5": {
+            "easy": 70,
+            "medium": 200,
+            "challenging": 400,
+            "deadly": 600
+        },
+        "6": {
+            "easy": 80,
+            "medium": 250,
+            "challenging": 500,
+            "deadly": 750
+        },
+        "7": {
+            "easy": 100,
+            "medium": 300,
+            "challenging": 600,
+            "deadly": 900
+        },
+        "8": {
+            "easy": 120,
+            "medium": 350,
+            "challenging": 700,
+            "deadly": 1050
+        },
+        "9": {
+            "easy": 130,
+            "medium": 400,
+            "challenging": 800,
+            "deadly": 1200
+        },
+        "10": {
+            "easy": 150,
+            "medium": 500,
+            "challenging": 1000,
+            "deadly": 1500
+        },
+        "11": {
+            "easy": 150,
+            "medium": 500,
+            "challenging": 1000,
+            "deadly": 1500
+        },
+        "12": {
+            "easy": 200,
+            "medium": 600,
+            "challenging": 1200,
+            "deadly": 1800
+        },
+        "13": {
+            "easy": 200,
+            "medium": 600,
+            "challenging": 1200,
+            "deadly": 1800
+        },
+        "14": {
+            "easy": 250,
+            "medium": 700,
+            "challenging": 1400,
+            "deadly": 2100
+        },
+        "15": {
+            "easy": 250,
+            "medium": 800,
+            "challenging": 1600,
+            "deadly": 2400
+        },
+        "16": {
+            "easy": 250,
+            "medium": 800,
+            "challenging": 1600,
+            "deadly": 2400
+        },
+        "17": {
+            "easy": 300,
+            "medium": 900,
+            "challenging": 1800,
+            "deadly": 2700
+        },
+        "18": {
+            "easy": 350,
+            "medium": 1000,
+            "challenging": 2000,
+            "deadly": 3000
+        },
+        "19": {
+            "easy": 350,
+            "medium": 1100,
+            "challenging": 2200,
+            "deadly": 3300
+        },
+        "20": {
+            "easy": 350,
+            "medium": 1100,
+            "challenging": 2200,
+            "deadly": 3300
+        }
+    },
+    "multipliers": [0,1,1.5,2,2,2,2,2.5,2.5,2.5,2.5,3,3,3,3,4]
+}
