@@ -1,3 +1,36 @@
 <ion-content padding>
-  Test
+    <form (ngSubmit)="logForm()">
+        <ion-item>
+            <ion-label>Difficulty</ion-label>
+            <ion-select [(ngModel)]="encounter.difficulty" name="difficulty">
+                <ion-option value="0">Easy</ion-option>
+                <ion-option value="1">Medium</ion-option>
+                <ion-option value="2">Hard</ion-option>
+                <ion-option value="3">Deadly</ion-option>
+            </ion-select>
+        </ion-item>
+        <!--switch this to a loaded list foreach -->
+        <ion-item>
+            <ion-label>Location</ion-label>
+            <ion-select [(ngModel)]="encounter.location" name="location">
+                <ion-option value="all">All</ion-option>
+                <ion-option value="plains">Plains</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Min Monsters</ion-label>
+            <ion-range min="1" max="15" pin="true" [(ngModel)]="encounter.minMonsters" name="Min Monsters">
+                <ion-label range-left>1</ion-label>
+                <ion-label range-right>15</ion-label>
+            </ion-range>
+        </ion-item>
+        <ion-item>
+            <ion-label>Max Monsters</ion-label>
+            <ion-range min="1" max="15" pin="true" [(ngModel)]="encounter.maxMonsters" name="Max Monsters">
+                <ion-label range-left>1</ion-label>
+                <ion-label range-right>15</ion-label>
+            </ion-range>
+        </ion-item>
+        <button ion-button type="submit" block>Generate Encounter</button>
+    </form>
 </ion-content>
