@@ -1,9 +1,11 @@
 import random
 import json
 from typing import List, Dict
+from bisect import bisect_left
 
 class EncounterGen:
     def __init__(self, monster_dict: Dict, encounter_difficulty: Dict):
+        self.multipliers =  [1,1,1.5,2,2,2,2,2.5,2.5,2.5,2.5,3,3,3,3,4]
         self.monster_dict = monster_dict
         self.encounter_difficulty = encounter_difficulty
 
@@ -11,10 +13,14 @@ class EncounterGen:
         xp_budget = self.get_xp_budget(encounter_data['difficulty'], encounter_data['characters'])
         xp_per_monster = self.xp_list_gen(xp_budget)
         output_monster = self.rnd_select_monster(xp_per_monster)
-
+        minMonsters = encounter_data['minMonsters']
+        maxMonsters = encounter_data['maxMonsters']
+        total_monsters = self.build_encounter_size(len(encounter_data['characters']), output_monster.xp, xp_budget)
         return {
             'xpBudget': xp_budget,
-            'output_monster': output_monster.serialize()
+            'output_monster': output_monster.serialize(),
+            'total_monsters': total_monsters,
+            'total_xp': output_monster.xp * total_monsters * self.multipliers[total_monsters]
         }
 
     def xp_list_gen(self, xp):
@@ -42,3 +48,14 @@ class EncounterGen:
             if self.monster_dict[key].xp <= int(xp):
                 monster_xp_list.append(self.monster_dict[key].xp)
         return monster_xp_list
+
+    def build_encounter_size(self, party_size, monster_xp, xp):
+        monster_count = [1, 2, 6, 10, 14]
+        encounter_multiplier = [1.0, 0.67, 0.50, 0.40, 0.33, 0.25]
+        num_monsters = xp // monster_xp
+        index_table = bisect_left(monster_count, num_monsters)
+        if party_size <= 2 and index_table != len(encounter_multiplier) - 1:
+            index_table += 1
+        if num_monsters == 1:
+            return num_monsters
+        return int(num_monsters * encounter_multiplier[index_table])

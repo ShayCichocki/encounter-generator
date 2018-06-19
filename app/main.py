@@ -5,7 +5,7 @@ import json
 from generator.encountergen import EncounterGen
 from generator.monster import Monster
 
-multipliers =  [0,1,1.5,2,2,2,2,2.5,2.5,2.5,2.5,3,3,3,3,4]
+
 
 simple_monsters_file = "data/simplified-monsters.json"
 keyed_monsters_file = "data/monsters-keyed.json"
