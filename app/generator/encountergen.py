@@ -18,9 +18,14 @@ class EncounterGen:
         total_monsters = self.build_encounter_size(len(encounter_data['characters']), output_monster.xp, xp_budget)
         return {
             'xpBudget': xp_budget,
-            'output_monster': output_monster.serialize(),
-            'total_monsters': total_monsters,
-            'total_xp': output_monster.xp * total_monsters * self.multipliers[total_monsters]
+            'monsters': [
+                {
+                    'monster':output_monster.serialize(),
+                    'count': total_monsters
+                }
+            ],
+            'totalMonsters': total_monsters,
+            'totalXp': output_monster.xp * total_monsters * self.multipliers[total_monsters]
         }
 
     def xp_list_gen(self, xp):
