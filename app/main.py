@@ -28,7 +28,10 @@ def get_monster_list():
 @app.route("/monsters/<id>")
 def get_monster_by_id(id):
     keyed_monsters = json.load(open(keyed_monsters_file, "r"))
-    return jsonify(keyed_monsters[str(id)])
+    if(str(id) in keyed_monsters):
+        return jsonify(keyed_monsters[str(id)])
+    else:
+        return jsonify({})
 
 @app.route("/generate-encounter", methods=['POST'])
 def generate_encounter():
