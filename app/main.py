@@ -2,19 +2,19 @@ from flask import Flask
 from flask import jsonify, render_template
 from flask import request
 import json
+from generator.encountergen import EncounterGen
+from generator.monster import Monster
 
 
-multipliers =  [0,1,1.5,2,2,2,2,2.5,2.5,2.5,2.5,3,3,3,3,4]
 
-encounter_difficulty_file = "data/encounter-difficulty.json"
 simple_monsters_file = "data/simplified-monsters.json"
 keyed_monsters_file = "data/monsters-keyed.json"
 
 app = Flask(__name__, template_folder="../encountergenux")
+app.keyed_monsters = {}
+app.simplified_monsters = {}
 
-simplified_monsters = {}
-encounter_difficulty = {}
-keyed_monsters = {}
+app.encounter_generator = None
 
 @app.route("/")
 def home():
@@ -22,36 +22,28 @@ def home():
 
 @app.route("/monsters")
 def get_monster_list():
-    simplified_monsters = json.load(open(simple_monsters_file, "r"))
-    return jsonify(simplified_monsters)
+    return jsonify(app.simplified_monsters)
 
 @app.route("/monsters/<id>")
 def get_monster_by_id(id):
-    keyed_monsters = json.load(open(keyed_monsters_file, "r"))
-    if(str(id) in keyed_monsters):
-        return jsonify(keyed_monsters[str(id)])
+    if(str(id) in app.keyed_monsters):
+        return jsonify(app.keyed_monsters[str(id)])
     else:
         return jsonify({})
 
 @app.route("/generate-encounter", methods=['POST'])
 def generate_encounter():
     encounter_data = json.loads(request.data)
-    total_xp = gen_encounter(encounter_data)
+    encounter = app.encounter_generator.generate_encounter(encounter_data)
+    return jsonify(encounter)
 
-    returnable = {
-        'total_xp': total_xp
-    }
-    return jsonify(returnable)
-
-
-def gen_encounter(encounter_data):
-    difficulty = encounter_data['difficulty']
-    total_xp = 0
-    for i in encounter_data['characters']:
-        total_xp = total_xp + encounter_difficulty[difficulty][i-1]
-    return total_xp
-
-
-if __name__ == "__main__":
-    encounter_difficulty = json.load(open(encounter_difficulty_file, "r"))
-    app.run(host="0.0.0.0", debug=True, port=5000)
+@app.before_first_request
+def setup_data():
+    app.keyed_monsters = json.load(open(keyed_monsters_file, "r"))
+    app.simplified_monsters = json.load(open(simple_monsters_file, "r"))
+    encounter_difficulty = json.load(open("data/encounter-difficulty.json", "r"))
+    monster_dict = {}
+    for monster in app.simplified_monsters:
+        print(monster)
+        monster_dict[monster['id']] = Monster(monster['id'], monster['name'], monster['cr'], monster['xp'], monster['environment'])
+    app.encounter_generator = EncounterGen(monster_dict, encounter_difficulty)
