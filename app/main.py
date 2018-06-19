@@ -22,10 +22,12 @@ def home():
 
 @app.route("/monsters")
 def get_monster_list():
+    simplified_monsters = json.load(open(simple_monsters_file, "r"))
     return jsonify(simplified_monsters)
 
 @app.route("/monsters/<id>")
 def get_monster_by_id(id):
+    keyed_monsters = json.load(open(keyed_monsters_file, "r"))
     return jsonify(keyed_monsters[str(id)])
 
 @app.route("/generate-encounter", methods=['POST'])
@@ -48,8 +50,5 @@ def gen_encounter(encounter_data):
 
 
 if __name__ == "__main__":
-    simplified_monsters = json.load(open(simple_monsters_file, "r"))
     encounter_difficulty = json.load(open(encounter_difficulty_file, "r"))
-    keyed_monsters = json.load(open(keyed_monsters_file, "r"))
-
     app.run(host="0.0.0.0", debug=True, port=5000)
