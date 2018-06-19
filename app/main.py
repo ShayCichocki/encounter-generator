@@ -34,18 +34,16 @@ def get_monster_by_id(id):
 @app.route("/generate-encounter", methods=['POST'])
 def generate_encounter():
     encounter_data = json.loads(request.data)
-    total_xp_possible = app.encounter_generator.get_xp_budget("easy", [1])
-
-    returnable = {
-        'totalXpPossible': total_xp_possible
-    }
-    return jsonify(returnable)
+    encounter = app.encounter_generator.generate_encounter(encounter_data)
+    return jsonify(encounter)
 
 @app.before_first_request
 def setup_data():
     app.keyed_monsters = json.load(open(keyed_monsters_file, "r"))
     app.simplified_monsters = json.load(open(simple_monsters_file, "r"))
+    encounter_difficulty = json.load(open("data/encounter-difficulty.json", "r"))
     monster_dict = {}
     for monster in app.simplified_monsters:
-        monster_dict[monster['id']] = Monster(*monster)
-    app.encounter_generator = EncounterGen(monster_dict)
+        print(monster)
+        monster_dict[monster['id']] = Monster(monster['id'], monster['name'], monster['cr'], monster['xp'], monster['environment'])
+    app.encounter_generator = EncounterGen(monster_dict, encounter_difficulty)
