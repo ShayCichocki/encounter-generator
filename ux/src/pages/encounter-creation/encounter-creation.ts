@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 
+
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-encounter-creation',
+  templateUrl: 'encounter-creation.html',
 })
-export class HomePage {
+
+export class EncounterCreationPage {
   encounter = {
       location:"all",
       difficulty: 0,

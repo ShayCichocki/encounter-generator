@@ -3,15 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { HomePage } from '../pages/home/home';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { TabsPage } from '../pages/tabs/tabs';
+import { CreatureSearchPage } from '../pages/creature-search/creature-search';
+import { EncounterCreationPage } from '../pages/encounter-creation/encounter-creation';
+import { EncounterPage } from '../pages/encounter/encounter';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    TabsPage,
+    CreatureSearchPage,
+    EncounterCreationPage,
+    EncounterPage
   ],
   imports: [
     BrowserModule,
@@ -20,7 +25,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    TabsPage,
+    CreatureSearchPage,
+    EncounterCreationPage,
+    EncounterPage
   ],
   providers: [
     StatusBar,

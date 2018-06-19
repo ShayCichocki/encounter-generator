@@ -1,0 +1,17 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>Creature Search</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let item of monsterList">
+      <h3>{{ item.name }}</h3>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
