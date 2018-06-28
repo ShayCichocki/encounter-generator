@@ -9,9 +9,10 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let item of monsterList">
-      <h3>{{ item.name }}</h3>
-    </ion-item>
+    <button ion-item *ngFor="let monster of monsterList" (click)="onViewMonster(monster)">
+      <h3 class="monster-name" >{{ monster.name }}</h3>
+      <p class="monster-cr"> CR: {{ monster.cr }}</p>
+    </button>
   </ion-list>
 
 </ion-content>

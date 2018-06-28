@@ -9,6 +9,10 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { CreatureSearchPage } from '../pages/creature-search/creature-search';
 import { EncounterCreationPage } from '../pages/encounter-creation/encounter-creation';
 import { EncounterPage } from '../pages/encounter/encounter';
+import { DataFinder } from '../providers/datafinder';
+import { HttpModule } from '@angular/http';
+import { CreaturePage } from '../pages/creature/creature';
+import { monsterService } from '../providers/monsterService';
 
 @NgModule({
   declarations: [
@@ -16,10 +20,12 @@ import { EncounterPage } from '../pages/encounter/encounter';
     TabsPage,
     CreatureSearchPage,
     EncounterCreationPage,
-    EncounterPage
+    EncounterPage,
+    CreaturePage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -28,11 +34,15 @@ import { EncounterPage } from '../pages/encounter/encounter';
     TabsPage,
     CreatureSearchPage,
     EncounterCreationPage,
-    EncounterPage
+    EncounterPage,
+    CreaturePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    DataFinder,
+    monsterService,
+    
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

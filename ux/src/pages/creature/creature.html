@@ -1,0 +1,19 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>{{ name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding text-center>
+  <ion-card>
+      <h2 padding>Challenge Rating: {{ CR }}</h2>
+      <h2 padding>Environment: {{ environment }}</h2>
+      <h3 padding>Experience: {{ XP }}</h3>
+      <button padding ion-button (click)="onClose(true)">Add Creature</button>
+  </ion-card>
+  <button ion-button (click)="onClose()">close</button>
+</ion-content>

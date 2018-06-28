@@ -1,25 +1,23 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { monsterService } from '../../providers/monsterService';
 
-/**
- * Generated class for the EncounterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-encounter',
   templateUrl: 'encounter.html',
 })
 export class EncounterPage {
+  monsters: string[];
+  CR: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private monsterService: monsterService){}
+  
+  ionViewDidEnter(){
+    this.monsters = this.monsterService.getMonsterList();
+    this.CR = this.monsterService.totalCR();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EncounterPage');
+  addHero(){
+    
   }
 
 }
